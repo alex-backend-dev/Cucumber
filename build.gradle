@@ -1,0 +1,66 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.11.2' // плагин для Allure
+    id "com.github.spacialcircumstances.gradle-cucumber-reporting" version "0.1.25"
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21) // соответствует <maven.compiler.source/target>
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    allureVersion = '2.25.0'
+    junitJupiterVersion = '5.10.0'
+    cucumberVersion = '7.16.1'
+    restAssuredVersion = '5.5.0'
+}
+
+dependencies {
+    // Cucumber
+    testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
+    testImplementation "io.cucumber:cucumber-picocontainer:${cucumberVersion}"
+    testImplementation "io.cucumber:cucumber-expressions:16.1.0"
+    testImplementation "io.cucumber:cucumber-junit-platform-engine:${cucumberVersion}"
+
+    // RestAssured
+    testImplementation "io.rest-assured:rest-assured:${restAssuredVersion}"
+    testImplementation "io.rest-assured:json-schema-validator:${restAssuredVersion}"
+
+    // Commons IO
+    implementation "commons-io:commons-io:2.19.0"
+
+    // JUnit 5
+    testImplementation "org.junit.jupiter:junit-jupiter:${junitJupiterVersion}"
+    testImplementation "org.junit.platform:junit-platform-suite-api:1.10.0"
+    testImplementation "org.junit.platform:junit-platform-suite-engine:1.10.0"
+
+    // Allure
+    testImplementation "io.qameta.allure:allure-rest-assured:${allureVersion}"
+    testImplementation "io.qameta.allure:allure-junit5:${allureVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+allure {
+    version = allureVersion
+    autoconfigure = true
+    aspectjweaver = true
+    //resultsDir = file("$projectDir/allure-results")
+}
+
+cucumberReports {
+    projectNameOverride = 'Cucumber BDD test project'
+    outputDir = file('build/cucumber-report')
+    reports = files('build/cucumber-report/json/cucumber-report.json')
+}
