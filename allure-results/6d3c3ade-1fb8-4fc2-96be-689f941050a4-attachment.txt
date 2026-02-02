@@ -1,0 +1,1 @@
+Successfully cleaned 'allure-results' directory.
