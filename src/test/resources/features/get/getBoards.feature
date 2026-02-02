@@ -1,3 +1,4 @@
+@happy
 Feature: Get Boards
   As a Trello API user
   I want to access all my boards
@@ -24,5 +25,5 @@ Feature: Get Boards
     Then the response status code is 200
     And body value has the following values by paths:
       | path | expected_value |
-      | name | Здоровье   |
+      | name | Updated name   |
     And the response matches 'get_board.json' schema

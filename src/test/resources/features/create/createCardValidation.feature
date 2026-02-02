@@ -1,3 +1,4 @@
+@sad
 Feature: Create Card Validation
   As a Trello API user
   I want to create my card safely
@@ -20,6 +21,7 @@ Feature: Create Card Validation
       | New card   |                           |
       | New card   | invalid                   |
 
+
   Scenario Outline: Check Create Card With Invalid Auth
     Given a request without authorization
     And the request has query params:
@@ -27,7 +29,7 @@ Feature: Create Card Validation
       | token | <token> |
     And the request has body params:
       | idList | 66b4f7efae08f2099d4e300f |
-      | name   | new board                |
+      | name   | new card                 |
     And the request has headers:
       | Content-Type | application/json |
     When the 'POST' request is sent to 'CREATE_A_CARD' endpoint
@@ -36,6 +38,6 @@ Feature: Create Card Validation
 
     Examples:
       | key                              | token                                                                        | error_message                |
-      |                                  |                                                                              | {"message":"missing scopes"} |
-      | ba54293d6062bc75d1ea8ce515e336ba |                                                                              | {"message":"missing scopes"} |
-      |                                  | ATTAb5cbc51a7ad518e1a7eb7e3d7d8389308154125e6732e3c17f107834835be9784DB52629 | invalid key                  |
+      | empty_value                      | empty_value                                                                  | {"message":"missing scopes"} |
+      | ba54293d6062bc75d1ea8ce515e336ba | empty_value                                                                  | {"message":"missing scopes"} |
+      | empty_value                      | ATTAb5cbc51a7ad518e1a7eb7e3d7d8389308154125e6732e3c17f107834835be9784DB52629 | invalid key                  |

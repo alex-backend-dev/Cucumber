@@ -1,13 +1,12 @@
 package steps;
 
-import consts.BoardsEndpoints;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.restassured.http.ContentType;
 
 import java.util.Map;
 
-import static consts.BoardsEndpoints.CREATE_BOARD_URL;
 import static consts.Endpoint.CREATE_A_BOARD;
 import static consts.Endpoint.DELETE_A_BOARD;
 import static utils.AuthorizationRequestProvider.requestWithAuth;
@@ -39,5 +38,10 @@ public class Hooks {
                 .delete(DELETE_A_BOARD.getUrl())
                 .then()
                 .statusCode(200);
+    }
+
+    @After
+    public void attachResponse(Scenario scenario){
+        scenario.attach(scenarioContext.getResponse().asPrettyString(), "text/plain", "Response");
     }
 }

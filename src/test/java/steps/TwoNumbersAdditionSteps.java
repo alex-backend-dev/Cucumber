@@ -31,6 +31,6 @@ public class TwoNumbersAdditionSteps {
 
     @Then("the result is 30")
     public void theResultIs() {
-        Assertions.assertEquals(20, result);
+        Assertions.assertEquals(30, result);
     }
 }

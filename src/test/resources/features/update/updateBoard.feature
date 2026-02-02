@@ -1,3 +1,4 @@
+@happy
 Feature: Update Board
   As a Trello API user
   I want to update my board

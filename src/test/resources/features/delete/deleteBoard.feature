@@ -1,3 +1,4 @@
+@happy
 Feature: Delete Boards
   As a Trello API user
   I want to delete my board

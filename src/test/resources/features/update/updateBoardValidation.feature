@@ -1,3 +1,4 @@
+@sad
 Feature: Update Board Validation
   As a Trello API user
   I want to update my board safely
@@ -5,9 +6,13 @@ Feature: Update Board Validation
 
   Scenario Outline: Check Update Board With Invalid Id
     Given a request with authorization
+    And the request has headers:
+      | Content-Type | application/json |
     And the request has path params:
       | name | value      |
       | id   | <id_value> |
+    And the request has body params:
+      | name | Updated name |
     When the 'PUT' request is sent to 'UPDATE_A_BOARD' endpoint
     Then the response status code is <status_code>
     And the response body is equal to '<error_message>'

@@ -1,3 +1,4 @@
+@sad
 Feature: Delete Card Validation
   As a Trello API user
   I want to delete my card safely
@@ -30,8 +31,8 @@ Feature: Delete Card Validation
     And the response body is equal to '<error_message>'
 
     Examples:
-      | key                              | token                                                                        | error_message                |
-      |                                  |                                                                              | {"message":"missing scopes"} |
-      | ba54293d6062bc75d1ea8ce515e336ba |                                                                              | {"message":"missing scopes"} |
-      |                                  | ATTAb5cbc51a7ad518e1a7eb7e3d7d8389308154125e6732e3c17f107834835be9784DB52629 | invalid key                  |
-      | 8b32218e6887516d17c84253faf967b6 | 492343b8106e7df3ebb7f01e219cbf32827c852a5f9e2b8f9ca296b1cc604955             | invalid key                  |
+      | key              | token              | error_message                |
+      | empty_value      | empty_value        | {"message":"missing scopes"} |
+      | current_user_key | empty_value        | {"message":"missing scopes"} |
+      | empty_value      | current_user_token | invalid key                  |
+      | another_user_key | another_user_token | invalid key                  |

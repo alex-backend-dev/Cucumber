@@ -1,3 +1,4 @@
+@sad
 Feature: Create Board Validation
   As a Trello API user
   I want to create my board safely
@@ -14,6 +15,7 @@ Feature: Create Board Validation
     And body value has the following values by paths:
       | path    | expected_value         |
       | message | invalid value for name |
+
 
   Scenario Outline: Check Create Board With Invalid Auth
     Given a request without authorization

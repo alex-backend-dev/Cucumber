@@ -1,3 +1,4 @@
+@sad
 Feature: Delete Board Validation
   As a Trello API user
   I want to delete my board safely
